@@ -77,4 +77,31 @@ class ModelFactory:
         model = init_chat_model(model_identifier,
                                   **model_params)
         return model
+    
+    def create_configurable_model(
+        self,
+        default_model_key: Optional[str] = None,
+        configurable_fields: tuple = ("model", "model_provider", "temperature"),
+        **kwargs
+    ) -> BaseChatModel :
+          """
+        Create a configurable model that can switch providers at runtime
+        
+        This is useful for applications that need to switch between models
+        without reinitializing.
+        
+        Usage:
+            model = factory.create_configurable_model("gpt-4o-mini")
+            
+            # Use default
+            response = model.invoke("Hello")
+            
+            # Switch to Claude at runtime
+            response = model.invoke(
+                "Hello",
+                config={"configurable": {"model": "claude-sonnet-4-5-20250929"}}
+            )
+        """
+          
+         
          
