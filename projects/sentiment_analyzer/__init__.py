@@ -26,7 +26,7 @@ from schema import (
 )
 
 from .prompts import (
-    SENTIMENT_PROMPT,
+    prompt as SENTIMENT_PROMPT,
     SYSTEM_PROMPT,
     HUMAN_PROMPT,
 )

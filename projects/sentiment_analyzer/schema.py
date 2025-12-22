@@ -24,19 +24,19 @@ class SentimentResult(BaseModel):
     key_phrases : list[str] = Field(default_factory=list, description="2-5 exact phrases from text indicating sentiment")
     summary:str = Field(description="1-2 sentence explanation of the sentiment")
 
-@field_validator
-@classmethod
-def limit_phrases(cls, v):
-    v[:5] if len(v)>5 else v
+    @field_validator('key_phrases')
+    @classmethod
+    def limit_phrases(cls, v):
+       return v[:5] if len(v)>5 else v
 
-@field_validator
-@classmethod
-def limit_emotions(cls, v):
-    v[:3] if len(v)>3 else v
+    @field_validator('emotions')
+    @classmethod
+    def limit_emotions(cls, v):
+       return v[:3] if len(v)>3 else v
 
 class AnalysisResponse(BaseModel):
     success:bool
     result : SentimentResult | None = None
     err: str | None = None
-    metadata = dict | None = None
+    metadata : dict | None = None
 
