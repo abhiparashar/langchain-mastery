@@ -18,7 +18,7 @@ Quick Start:
     print(result.sentiment)  # positive
 """
 
-from .schemas import (
+from schema import (
     SentimentType,
     EmotionType,
     SentimentResult,
